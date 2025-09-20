@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { projects } from "../../constants";
 
 const Work = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const handleOpenModal = (project) => {
     setSelectedProject(project);
@@ -15,80 +20,121 @@ const Work = () => {
   return (
     <section
       id="work"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans relative"
-      jsx ={true}
+      className="min-h-screen py-16 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 font-sans relative overflow-hidden"
     >
-      {/* Section Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-          PROJECTS
-        </h2>
-        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6 rounded-full"></div>
-        <p className="text-gray-300 text-base sm:text-lg lg:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
-          A showcase of the projects I have worked on, highlighting my skills
-          and experience in various technologies
-        </p>
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Projects Grid */}
-      <div className="grid gap-6 sm:gap-8 lg:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            onClick={() => handleOpenModal(project)}
-            className="group border border-gray-700 bg-gradient-to-br from-gray-900 to-gray-800 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer hover:shadow-purple-500/30 hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 ease-out relative"
-          >
-            {/* Gradient overlay for hover effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-            
-            <div className="relative p-4 sm:p-6">
-              <div className="relative overflow-hidden rounded-xl mb-4">
+      <div className="max-w-7xl mx-auto pt-16 md:pt-24 lg:pt-32">
+        {/* Section Title */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            PROJECT <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PORTFOLIO</span>
+          </h2>
+          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6 rounded-full"></div>
+          <p className="text-gray-300 text-lg sm:text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
+            A curated collection of projects showcasing my skills and passion for creating impactful digital experiences
+          </p>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid gap-6 sm:gap-8 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              onClick={() => handleOpenModal(project)}
+              className={`group border border-gray-700 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden cursor-pointer hover:shadow-purple-500/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out relative transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{transitionDelay: `${index * 0.1}s`}}
+            >
+              {/* Gradient overlay for hover effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+              
+              {/* Project image */}
+              <div className="relative overflow-hidden rounded-t-3xl">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-40 sm:h-48 lg:h-52 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-48 sm:h-52 lg:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* View project button that appears on hover */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold text-sm shadow-lg shadow-purple-500/30">
+                    View Project
+                  </span>
+                </div>
               </div>
               
-              <div className="space-y-4">
-                <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-400 text-sm sm:text-base leading-relaxed line-clamp-3 group-hover:text-gray-300 transition-colors duration-300">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.slice(0, 3).map((tag, index) => (
-                    <span
-                      key={index}
-                      className="inline-block bg-gradient-to-r from-purple-900/50 to-pink-900/50 text-xs sm:text-sm font-semibold text-purple-300 rounded-full px-3 py-1 border border-purple-500/30 hover:border-purple-400/50 transition-colors duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 3 && (
-                    <span className="inline-block bg-gray-700 text-xs sm:text-sm font-semibold text-gray-300 rounded-full px-3 py-1">
-                      +{project.tags.length - 3}
-                    </span>
-                  )}
+              {/* Project content */}
+              <div className="relative p-5 sm:p-6">
+                <div className="space-y-4">
+                  <h3 className="text-xl sm:text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed line-clamp-3 group-hover:text-gray-300 transition-colors duration-300">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.slice(0, 3).map((tag, index) => (
+                      <span
+                        key={index}
+                        className="inline-block bg-gradient-to-r from-purple-900/50 to-pink-900/50 text-xs sm:text-sm font-semibold text-purple-300 rounded-full px-3 py-1 border border-purple-500/30 hover:border-purple-400/50 transition-colors duration-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className="inline-block bg-gray-700 text-xs sm:text-sm font-semibold text-gray-300 rounded-full px-3 py-1">
+                        +{project.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Stats Section */}
+        <div className={`mt-20 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+             style={{transitionDelay: '0.8s'}}>
+          <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-2xl rounded-3xl p-8 border border-purple-500/30 shadow-xl shadow-purple-500/10">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+              Project Impact
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { label: 'Total Projects', value: projects.length },
+                { label: 'Technologies', value: '15+' },
+                { label: 'Happy Clients', value: '10+' },
+                { label: 'Years', value: '2+' }
+              ].map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-2">{stat.value}</div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Modal Container */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fadeIn"
           onClick={handleCloseModal}
         >
           <div 
-            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden relative border border-gray-700 animate-slideUp"
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden relative border border-purple-500/30 animate-slideUp"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -175,7 +221,7 @@ const Work = () => {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
