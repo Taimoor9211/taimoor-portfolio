@@ -4,9 +4,13 @@ import { projects } from "../../constants";
 const Work = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [visibleProjects, setVisibleProjects] = useState(6);
+  const [showLoadMore, setShowLoadMore] = useState(true);
 
   useEffect(() => {
     setIsVisible(true);
+    // Check if we have more than 6 projects
+    setShowLoadMore(projects.length > 6);
   }, []);
 
   const handleOpenModal = (project) => {
@@ -16,6 +20,23 @@ const Work = () => {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
+
+  const handleLoadMore = () => {
+    // Show 6 more projects
+    setVisibleProjects(prev => prev + 6);
+    // Hide load more button if all projects are visible
+    if (visibleProjects + 6 >= projects.length) {
+      setShowLoadMore(false);
+    }
+  };
+
+  const handleShowLess = () => {
+    // Reset to initial 6 projects
+    setVisibleProjects(6);
+    setShowLoadMore(true);
+  };
+
+  const displayedProjects = projects.slice(0, visibleProjects);
 
   return (
     <section
@@ -39,11 +60,14 @@ const Work = () => {
           <p className="text-gray-300 text-lg sm:text-xl md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
             A curated collection of projects showcasing my skills and passion for creating impactful digital experiences
           </p>
+          <div className="mt-4 text-purple-400 font-semibold">
+            Showing {displayedProjects.length} of {projects.length} projects
+          </div>
         </div>
 
         {/* Projects Grid */}
         <div className="grid gap-6 sm:gap-8 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <div
               key={project.id}
               onClick={() => handleOpenModal(project)}
@@ -100,6 +124,39 @@ const Work = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Load More / Show Less Buttons */}
+        <div className={`flex justify-center mt-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex flex-col sm:flex-row gap-4">
+            {showLoadMore && (
+              <button
+                onClick={handleLoadMore}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 border border-purple-500 hover:border-purple-400"
+              >
+                <span className="flex items-center justify-center gap-3">
+                  Load More Projects
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </button>
+            )}
+            
+            {visibleProjects > 6 && (
+              <button
+                onClick={handleShowLess}
+                className="bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/25 border border-gray-600 hover:border-gray-500"
+              >
+                <span className="flex items-center justify-center gap-3">
+                  Show Less
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </span>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Stats Section */}
