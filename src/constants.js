@@ -47,6 +47,7 @@ import WeatherAppLogo from "./assets/work_logo/we.png";
 import RayOfHopeLogo from "./assets/work_logo/rayofhope.png";
 import FuransLogo from "./assets/work_logo/furns.png";
 import HarparLogo from "./assets/work_logo/harpar.png";
+import Weather from "./assets/work_logo/Weather.png"
 
 export const SkillsInfo = [
   {
@@ -221,6 +222,17 @@ export const projects = [
   },
   {
     id: 2,
+    title: "My Weather App",
+    description: [
+      "My-Weather-App is a user-friendly weather application built with React and Vite, offering real-time weather updates and forecasts for various locations. It features an intuitive interface, leveraging Tailwind CSS for styling, ensuring a smooth and responsive user experience.",
+    ],
+    image: Weather, // Ensure StylishLogo is defined
+    tags: ["HTML", "CSS", "TAILWIND CSS", "JavaScript", "React JS",],
+    github: "https://github.com/Taimoor9211/My-Weather-App",
+    webapp: "https://weather-app-by-taimoor.netlify.app/",
+  },
+  {
+    id: 3,
     title: "Furans Furniture Wibesite",
     description:
       "Explore a beautifully designed front-end furniture website that showcases a variety of furniture products including home, office, and hospital furniture. The site features a user-friendly interface built with HTML and CSS, allowing users to easily browse and shop for their desired pieces. With sections for new arrivals, featured products, and a newsletter subscription, this website aims to enhance the online shopping experience.",
@@ -230,7 +242,7 @@ export const projects = [
     webapp: "https://furnitures-by-taimoor.netlify.app/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Typeform Clone ",
     description:
       "Easily create a no-code landing page using a form. Turn your form into an engaging landing page. Stay on-brand, collect data, and automate workflows—all with no need to code.",
@@ -240,7 +252,7 @@ export const projects = [
     webapp: "https://taimoortailwindcss.netlify.app/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Calculator",
     description:
       "A simple yet powerful calculator application built using HTML, CSS, and JavaScript. This web-based tool features a user-friendly interface that allows users to perform basic arithmetic operations efficiently. With buttons for digits, operators, and functions like clear and delete, the calculator is designed for ease of use, ensuring a smooth experience for anyone needing quick calculations. You can access the application directly [here](https://taimoorcalculator.netlify.app/) and view the source code on GitHub [here](https://github.com/Taimoor9211/Calculator).",
@@ -251,7 +263,7 @@ export const projects = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: "Weather App",
     description:
       "A web application that provides real-time weather updates and forecasts based on user-selected cities. The app features an intuitive design, displaying temperature, humidity, and wind speed, making it an essential tool for anyone looking to stay informed about weather conditions.",
@@ -262,7 +274,7 @@ export const projects = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: "Nature Mort for Harper's Landing Page",
     description:
       "A captivating exploration of still life art, 'Nature Mort for Harper's' presents a stunning collection that captures the essence of nature's beauty through meticulously arranged objects. Each piece reflects a harmony between the organic and the artistic, inviting viewers to appreciate the intricate details and the fleeting moments of life. This collection not only showcases artistic talent but also serves as a reminder of the delicate balance within the natural world.",
