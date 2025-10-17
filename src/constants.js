@@ -49,6 +49,7 @@ import RayOfHopeLogo from "./assets/work_logo/rayofhope.png";
 import FuransLogo from "./assets/work_logo/furns.png";
 import HarparLogo from "./assets/work_logo/harpar.png";
 import Weather from "./assets/work_logo/Weather.png";
+import ToDoLogo from "./assets/work_logo/oDo.png"
 
 export const SkillsInfo = [
   {
@@ -265,6 +266,16 @@ export const projects = [
   },
   {
     id: 6,
+    title: "ToDo App",
+    description:
+      "A simple yet powerful ToDoLogo application built using HTML, CSS, and JavaScript.",
+    image: ToDoLogo,
+    tags: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Taimoor9211/To-Do-List",
+    webapp: "https://taimoor9211.github.io/To-Do-List/",
+  },
+  {
+    id: 7,
     title: "Calculator",
     description:
       "A simple yet powerful calculator application built using HTML, CSS, and JavaScript. This web-based tool features a user-friendly interface that allows users to perform basic arithmetic operations efficiently. With buttons for digits, operators, and functions like clear and delete, the calculator is designed for ease of use, ensuring a smooth experience for anyone needing quick calculations. You can access the application directly [here](https://taimoorcalculator.netlify.app/) and view the source code on GitHub [here](https://github.com/Taimoor9211/Calculator).",
@@ -275,7 +286,7 @@ export const projects = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "Weather App",
     description:
       "A web application that provides real-time weather updates and forecasts based on user-selected cities. The app features an intuitive design, displaying temperature, humidity, and wind speed, making it an essential tool for anyone looking to stay informed about weather conditions.",
@@ -286,7 +297,7 @@ export const projects = [
   },
 
   {
-    id: 8,
+    id: 9,
     title: "Nature Mort for Harper's Landing Page",
     description:
       "A captivating exploration of still life art, 'Nature Mort for Harper's' presents a stunning collection that captures the essence of nature's beauty through meticulously arranged objects. Each piece reflects a harmony between the organic and the artistic, inviting viewers to appreciate the intricate details and the fleeting moments of life. This collection not only showcases artistic talent but also serves as a reminder of the delicate balance within the natural world.",
